@@ -35,25 +35,40 @@ Cài đặt trên Ubuntu 14.04
 apt-get install build-essential
 apt-get install mysql-dev postgresql-dev
 ```
+
+*Note:* khi cài đặt thì lệnh cài msql và postgresql không chạy thì chạy lệnh sau đây để cài đặt Apache, MySQL, PHP:
+
+`sudo apt-get install mysql-server libmysqlclient-dev mysql-client apache2 php5 libapache2-mod-php5 php5-mysql php5-curl php5-gd php5-intl php-pear php5-imagick php5-imap php5-mcrypt php5-memcache php5-ming php5-ps php5-pspell php5-recode php5-snmp php5-sqlite php5-tidy php5-xmlrpc php5-xsl`
+
+
 ###2. Cài đặt Manager/Agent
 - Tải về phiên bản mới nhất và checksum của nó
 ```
 # wget -U ossec https://bintray.com/artifact/download/ossec/ossec-hids/ossec-hids-2.8.3.tar.gz
 # wget -U ossec https://raw.githubusercontent.com/ossec/ossec-docs/master/docs/whatsnew/checksums/2.8.3/ossec-hids-2.8.3.tar.gz.sha256
 # cat ossec-hids-2.8.3.tar.gz.sha256
-# sha256sum -C  ossec-hids-2.8.3.tar.gz.sha256 ossec-hids-2.8.3.tar.gz
+# sha256sum -c  ossec-hids-2.8.3.tar.gz.sha256 ossec-hids-2.8.3.tar.gz
 ```
 - Giải nén và chạy các install.sh
 ```
- . Tar -zxvf OSSEC-HIDS - tar.gz * ( hoặc gunzip -d ; tar -xvf ) 
-  cd OSSEC-hids- *
+ tar -zxvf ossec-hids-*.tar.gz ( hoặc gunzip -d ; tar -xvf ) 
+ cd ossec-hids-*
  ./install.sh
 ```
 Sau đó tùy chọn các cài đặt:
+
 <img1>
+
 <img2>
+
+Nếu là agent
+
+<img2-1>
+
 <img3>
+
 Tiếp tới khi finish:
+
 <img4>
 
 - OSSEC manager lắng nghe trên UDP cổng 1514
@@ -90,8 +105,14 @@ Sau khi thêm một agnet, một key sẽ được tạo ra. Chìa khóa này c�
 Sau khi xóa cần làm mất hiệu lực của key trong `/var/ossec/etc/client.key`
 
 ###manage_agent trên OSSEC agents
+Chạy `/var/ossec/bin/manage_agents`
 
+Chọn `i` để import key từ server vào. Copy key của agent đã được tạo trên server 
+
+<img9>
 
 
 
 *Tham khảo:* https://ossec.github.io/docs/
+
+*Note: Tất cả user là `huyentrang`, pass là `123456`*
