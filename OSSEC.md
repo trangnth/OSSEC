@@ -111,6 +111,64 @@ Chọn `i` để import key từ server vào. Copy key của agent đã được
 
 <img9>
 
+####mysql trên server
+Tạo một Mysql user và database cho ossec: 
+```
+#mysql -u root -p
+mysql> create database ossec;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> grant all privileges on ossec.* to ossecuser@localhost identified by 'your_password';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> exit
+Bye
+```
+<img11>
+ 
+Tiếp theo chạy lệnh sau và nhập password(trong thư mục đã tải về): 
+
+`mysql -u root -p ossec < src/os_dbd/mysql.schema`
+
+<img12>
+
+Thêm các dòng sau vào tệp tin cấu hình `nano /var/ossec/etc/ossec.conf`
+```
+<database_output>
+        <hostname>127.0.0.1</hostname>
+        <username>ossecuser</username>
+        <password>your_password</password>
+        <database>ossec</database>
+        <type>mysql</type>
+</database_output>
+```
+Save and enable database and restart ossec:
+```
+# /var/ossec/bin/ossec-control enable database
+# /var/ossec/bin/ossec-control restart
+```
+
+###4.Cài đặt OSSEC WEB UI
+```
+# cd /var/www/html/
+# wget https://github.com/ossec/ossec-wui/archive/master.zip
+# unzip master.zip
+```
+Đổi tên thư mục ossec:
+`#mv ossec-wui-master/ ossec/`
+
+Tạo một thư mục **tmp** và thiết lập các quyền sở hữu tệp tin và điểu khiển: 
+```
+# mkdir ossec/tmp/
+# chown www-data: -R ossec/
+# chmod 666 /var/www/html/ossec/tmp
+```
+
+Bây giờ có thể vào theo địa chỉ: `http://your_server_IP/ossec/`
+
 
 
 *Tham khảo:* https://ossec.github.io/docs/
