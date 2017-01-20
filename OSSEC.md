@@ -79,7 +79,7 @@ Tiếp tới khi finish:
 `# /var/ossec/bin/ossec-control start`
 
 ###3. Cấu hình
-###manage_agents trên OSSEC server
+###a. manage_agents trên OSSEC server
 Chạy `manage_agents`:
 `/var/ossec/bin/manage_agents`
 
@@ -106,7 +106,7 @@ Sau khi thêm một agnet, một key sẽ được tạo ra. Chìa khóa này c�
 
 Sau khi xóa cần làm mất hiệu lực của key trong `/var/ossec/etc/client.key`
 
-###manage_agent trên OSSEC agents
+###b. manage_agent trên OSSEC agents
 Chạy `/var/ossec/bin/manage_agents`
 
 Chọn `i` để import key từ server vào. Copy key của agent đã được tạo trên server 
@@ -153,7 +153,7 @@ Save and enable database and restart ossec:
 # /var/ossec/bin/ossec-control restart
 ```
 
-###4.Cài đặt OSSEC WEB UI
+###4. Cài đặt OSSEC WEB UI
 ```
 # cd /var/www/html/
 # wget https://github.com/ossec/ossec-wui/archive/master.zip
