@@ -116,7 +116,7 @@ Chọn `i` để import key từ server vào. Copy key của agent đã được
 ###mysql trên server
 Tạo một Mysql user và database cho ossec: 
 ```
-#mysql -u root -p
+#Mysql -u root -p
 mysql> create database ossec;
 Query OK, 1 row affected (0.00 sec)
 
@@ -141,7 +141,7 @@ Thêm các dòng sau vào tệp tin cấu hình `nano /var/ossec/etc/ossec.conf`
 ```
 <database_output>
         <hostname>127.0.0.1</hostname>
-        <username>ossecuser</username>
+        <username>root</username>
         <password>your_password</password>
         <database>ossec</database>
         <type>mysql</type>
@@ -167,12 +167,19 @@ Tạo một thư mục **tmp** và thiết lập các quyền sở hữu tệp t
 # mkdir ossec/tmp/
 # chown www-data: -R ossec/
 # chmod 666 /var/www/html/ossec/tmp
+# apachectl restart
 ```
 
 Bây giờ có thể vào theo địa chỉ: `http://your_server_IP/ossec/`
 
+Nếu không hiện ra cái gì thì kiểm tra trong file `/etc/apache2/apache2.conf` và thêm dòng
+`ServerName localhost`
 
 
-*Tham khảo:* https://ossec.github.io/docs/
+*Tham khảo:* 
 
-*Note: Tất cả user là `huyentrang`, pass là `123456`*
+https://ossec.github.io/docs/
+
+http://www.ossec.net/wiki/index.php/OSSECWUI:Install
+
+**Note: Tất cả user là `huyentrang`, pass là `123456`**
