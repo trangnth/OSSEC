@@ -79,13 +79,13 @@ Tiếp tới khi finish:
 `# /var/ossec/bin/ossec-control start`
 
 ###3. Cấu hình
-###a. manage_agents trên OSSEC server
+###Manage_agents trên OSSEC server
 Chạy `manage_agents`:
 `/var/ossec/bin/manage_agents`
 
 <img5>
 
-####Thêm một agent
+- Thêm một agent
 Chọn **a** nhập tên agent và IP
 
 IP có thể là một địa chỉ cụ thể hoặc 1 dải IP hay cũng có thể để any
@@ -94,26 +94,26 @@ IP có thể là một địa chỉ cụ thể hoặc 1 dải IP hay cũng có t
 
 Nếu là agent đầu tiên được bổ sung vào máy chủ này thì cần khỏi động lại OSSEC `/var/ossec/bin/ossec-control restart`
 
-####Extract the key for an agent
+- Extract the key for an agent
 
 Sau khi thêm một agnet, một key sẽ được tạo ra. Chìa khóa này cần được copy vào agent. Sử dụng tùy chọn `e` nhập ID của agent cần extract
 
 <img7>
 
-####Xóa bỏ một agent
+- Xóa bỏ một agent
 
 <img8>
 
 Sau khi xóa cần làm mất hiệu lực của key trong `/var/ossec/etc/client.key`
 
-###b. manage_agent trên OSSEC agents
+###Manage_agent trên OSSEC agents
 Chạy `/var/ossec/bin/manage_agents`
 
 Chọn `i` để import key từ server vào. Copy key của agent đã được tạo trên server 
 
 <img9>
 
-####mysql trên server
+###mysql trên server
 Tạo một Mysql user và database cho ossec: 
 ```
 #mysql -u root -p
