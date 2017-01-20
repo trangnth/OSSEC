@@ -116,7 +116,7 @@ Chọn `i` để import key từ server vào. Copy key của agent đã được
 ###mysql trên server
 Tạo một Mysql user và database cho ossec: 
 ```
-#Mysql -u root -p
+#mysql -u root -p
 mysql> create database ossec;
 Query OK, 1 row affected (0.00 sec)
 
