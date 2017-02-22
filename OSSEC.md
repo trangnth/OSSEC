@@ -182,4 +182,4 @@ https://ossec.github.io/docs/
 
 http://www.ossec.net/wiki/index.php/OSSECWUI:Install
 
-**Note: Tất cả user là `huyentrang`, pass là `123456`**
+*Note: Tất cả user là `huyentrang`, pass là `123456`*
