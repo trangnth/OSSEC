@@ -1,5 +1,5 @@
-﻿#OSSEC
-##Khái niệm
+# OSSEC
+## Khái niệm
 OSSEC là một hệ thống phát hiện xâm nhập mã nguồn mở
 
 Cho phép khách hàng phát hiện và cảnh báo về những thay đổi trái phép của hệ thống tệp tin và những hành vi độc hại được nhúng trong các file log của các chương trình hoặc ứng dụng 
@@ -17,20 +17,20 @@ Hỗ trợ nhiều hệ điều hành khác nhau như Windows, Ubuntu, CentOs,..
 
 Yêu cầu hệ thống có hỗ trợ C, C++ để biện dịch OSEC từ Sources code
 
-##OSSEC Architecture
+## OSSEC Architecture
 
-<img>
+<img src = "https://github.com/trangnth/OSSEC/blob/master/img/ossec-arch.jpg">
 
 https://ossec.github.io/docs/manual/ossec-architecture.html
 
-##Cài đặt OSSEC 
+## Cài đặt OSSEC 
 Ta có thể cài đặt từ Source code hay các gói RPM
 
 Địa chỉ download: http://ossec.github.io/
 
 Cài đặt trên Ubuntu 14.04 
 
-###1. Yêu cầu cài đặt:
+### 1. Yêu cầu cài đặt:
 ```
 apt-get install build-essential
 apt-get install mysql-dev postgresql-dev
@@ -43,7 +43,7 @@ sudo apt-get install mysql-server libmysqlclient-dev mysql-client apache2 php5 l
 ```
 
 
-###2. Cài đặt Manager/Agent
+### 2. Cài đặt Manager/Agent
 - Tải về phiên bản mới nhất và checksum của nó
 ```
 # wget -U ossec https://bintray.com/artifact/download/ossec/ossec-hids/ossec-hids-2.8.3.tar.gz
@@ -59,38 +59,38 @@ sudo apt-get install mysql-server libmysqlclient-dev mysql-client apache2 php5 l
 ```
 Sau đó tùy chọn các cài đặt:
 
-<img1>
+<img src = "https://github.com/trangnth/OSSEC/blob/master/img/1.png">
 
-<img2>
+<img src = "https://github.com/trangnth/OSSEC/blob/master/img/2.png">
 
 Nếu là agent
 
-<img2-1>
+<img src = "https://github.com/trangnth/OSSEC/blob/master/img/2-1.jpg">
 
-<img3>
+<img src = "https://github.com/trangnth/OSSEC/blob/master/img/3.png">
 
 Tiếp tới khi finish:
 
-<img4>
+<img src = https://github.com/trangnth/OSSEC/blob/master/img/4.png">
 
 - OSSEC manager lắng nghe trên UDP cổng 1514
 
 - Start OSSEC: 
 `# /var/ossec/bin/ossec-control start`
 
-###3. Cấu hình
-###Manage_agents trên OSSEC server
+### 3. Cấu hình
+### Manage_agents trên OSSEC server
 Chạy `manage_agents`:
 `/var/ossec/bin/manage_agents`
 
-<img5>
+<img src = "https://github.com/trangnth/OSSEC/blob/master/img/5.png">
 
 - Thêm một agent
 Chọn **a** nhập tên agent và IP
 
 IP có thể là một địa chỉ cụ thể hoặc 1 dải IP hay cũng có thể để any
 
-<img6>
+<img src = "https://github.com/trangnth/OSSEC/blob/master/img/6.png">
 
 Nếu là agent đầu tiên được bổ sung vào máy chủ này thì cần khỏi động lại OSSEC `/var/ossec/bin/ossec-control restart`
 
@@ -98,22 +98,23 @@ Nếu là agent đầu tiên được bổ sung vào máy chủ này thì cần 
 
 Sau khi thêm một agnet, một key sẽ được tạo ra. Chìa khóa này cần được copy vào agent. Sử dụng tùy chọn `e` nhập ID của agent cần extract
 
-<img7>
+<img src = "https://github.com/trangnth/OSSEC/blob/master/img/7.png">
 
 - Xóa bỏ một agent
 
-<img8>
+<img src = "https://github.com/trangnth/OSSEC/blob/master/img/8.png">
 
 Sau khi xóa cần làm mất hiệu lực của key trong `/var/ossec/etc/client.key`
 
-###Manage_agent trên OSSEC agents
+### Manage_agent trên OSSEC agents
 Chạy `/var/ossec/bin/manage_agents`
 
 Chọn `i` để import key từ server vào. Copy key của agent đã được tạo trên server 
 
-<img9>
+<img src = "https://github.com/trangnth/OSSEC/blob/master/img/9.png">
 
-###mysql trên server
+### mysql trên server
+<img src = "https://github.com/trangnth/OSSEC/blob/master/img/10.png">
 Tạo một Mysql user và database cho ossec: 
 ```
 #mysql -u root -p
@@ -129,13 +130,13 @@ Query OK, 0 rows affected (0.00 sec)
 mysql> exit
 Bye
 ```
-<img11>
+<img src = "https://github.com/trangnth/OSSEC/blob/master/img/11.png">
  
 Tiếp theo chạy lệnh sau và nhập password(trong thư mục đã tải về): 
 
 `mysql -u root -p ossec < src/os_dbd/mysql.schema`
 
-<img12>
+<img src = "https://github.com/trangnth/OSSEC/blob/master/img/12.png">
 
 Thêm các dòng sau vào tệp tin cấu hình `nano /var/ossec/etc/ossec.conf`
 ```
@@ -153,7 +154,7 @@ Save and enable database and restart ossec:
 # /var/ossec/bin/ossec-control restart
 ```
 
-###4. Cài đặt OSSEC WEB UI
+### 4. Cài đặt OSSEC WEB UI
 ```
 # cd /var/www/html/
 # wget https://github.com/ossec/ossec-wui/archive/master.zip
@@ -176,10 +177,9 @@ Nếu không hiện ra cái gì thì kiểm tra trong file `/etc/apache2/apache2
 `ServerName localhost`
 
 
-*Tham khảo:* 
-
+## Tham khảo:
 https://ossec.github.io/docs/
-
 http://www.ossec.net/wiki/index.php/OSSECWUI:Install
+https://github.com/ossec/ossec-wui
 
 *Note: Tất cả user là `huyentrang`, pass là `123456`*
